@@ -23,7 +23,7 @@ const connectDB = async ()=>{
 export default connectDB
 ```
 
-## Authenticaion Middleware
+## Verify Authenticaion Middleware
 
 The `src/middlewares/auth.middleware.js` file connects MongoDB database
 
