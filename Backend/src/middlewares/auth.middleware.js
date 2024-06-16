@@ -1,33 +1,3 @@
-# Backend for Authentication and Authorization
-
-Backend with Javascript
-
-## Data Base connection
-
-The `src/db/index.js` file connects MongoDB database
-
-```javascript
-import mongoose from "mongoose"
-import { DB_Name } from "../constants.js"
-
-const connectDB = async ()=>{
-    try{
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_Name}`)
-        console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`)
-    }catch(error){
-        console.log("MONGODB connection error",error)
-        process.exit(1)
-    }
-}
-
-export default connectDB
-```
-
-## Authenticaion Middleware
-
-The `src/middlewares/auth.middleware.js` file connects MongoDB database
-
-```javascript
 import { ApiError } from "../utils/ApiError.js"
 import { asyncHandler } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
@@ -58,4 +28,3 @@ export const verifyJWT = asyncHandler( async(req, _, next) => {
         throw new ApiError(401, error?.message || "Invalid Access Token")
     }
 })
-```
