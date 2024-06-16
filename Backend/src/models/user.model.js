@@ -1,7 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2"
 import jwt from "jsonwebtoken"
-import bcrypt, { hash } from "bcryptjs"
+import bcrypt, { hash } from "bcrypt"
 
 const userSchema = new Schema({
     username:{
@@ -24,10 +24,6 @@ const userSchema = new Schema({
         required:true,
         trim:true,
         index:true
-    },
-    avatar:{
-        type:String, //cloudinary url
-        required:true
     },
     role:{
         type: String,
@@ -96,4 +92,4 @@ userSchema.methods.generateRefreshToken = function(){
 
 
 
-export const User = mongoose.model.('User',userSchema)
+export const User = mongoose.model('User',userSchema)
