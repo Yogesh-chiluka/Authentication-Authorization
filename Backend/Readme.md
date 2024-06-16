@@ -59,3 +59,6 @@ export const verifyJWT = asyncHandler( async(req, _, next) => {
     }
 })
 ```
+
+## Register new User
+![Register new Use](http://url/to/img.png)
