@@ -11,24 +11,19 @@ const productSchema = new Schema(
             lowercase: true,
         },
         description:{
-            
-        }
+            type: String,
+            required: true,
+        },
         price:{
             type:Number,
             required: true,
         },
-        salesperson:{
-            type: Schema.Types.ObjectId,
-            ref: "User"
-        },
         rating:{
             type: Schema.Types.Decimal128,
-            required: true,
             default: mongoose.Types.Decimal128.fromString('0'),
         },
         stock:{
             type:Number,
-            required: true,
             default:0,
         },
         brand:{
@@ -39,15 +34,23 @@ const productSchema = new Schema(
             typeof: String,
             required: true,
         },
+        thumbnail:{
+            type: String,
+            required: true,
+        },
         images:{
             type: [String],
             required: true,
         },
-        {
-
-        }
-
-    },{
+        salesperson:{
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        },
+    },
+    {
         timestamps: true
     }
 )
+
+
+export const Product = mongoose.model("Product",productSchema);
