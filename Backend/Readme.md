@@ -23,7 +23,7 @@ const connectDB = async ()=>{
 export default connectDB
 ```
 
-## Authenticaion Middleware
+## Verify Authenticaion Middleware
 
 The `src/middlewares/auth.middleware.js` file connects MongoDB database
 
@@ -61,4 +61,8 @@ export const verifyJWT = asyncHandler( async(req, _, next) => {
 ```
 
 ## Register new User
+<<<<<<< HEAD
 ![Register new User](http://url/to/img.png)
+=======
+![Register new Use](https://github.com/Yogesh-chiluka/Authentication-Authorization/blob/main/Backend/registerUser.png)
+>>>>>>> 6d4ecdd602763ddc562245da5e9f74ed2e8ad8cd
