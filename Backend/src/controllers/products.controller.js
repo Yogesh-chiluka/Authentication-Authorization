@@ -32,7 +32,7 @@ const addNewProductFromExistingList = asyncHandler( async (req, res) => {
     
 })
 
-const updataProductData = asyncHandler( async(req, res) => {
+const updateProductData = asyncHandler( async(req, res) => {
 
     const { productId, description, price, stock } = req.body;
 
@@ -66,9 +66,22 @@ const updataProductData = asyncHandler( async(req, res) => {
     )
 })
 
+export {
+    getProductById,
+    addNewProductFromExistingList,
+    updateProductData,
+}
+
+
 //const gettProucts by query and category
 
 /*
+
+add validations for controller funcions
+
+
+
+
 models users, products, bag, 
 
 
@@ -113,3 +126,4 @@ seller -> regestration
 
 
     */
+

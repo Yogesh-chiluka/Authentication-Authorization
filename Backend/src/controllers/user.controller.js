@@ -188,10 +188,90 @@ const getAllUsers = asyncHandler( async(req,res) => {
 
 })
 
+const registerSeller = asyncHandler( async(req, res) => {
+
+    const {fullname, username, email, password, role, registrationStatus} = req.body
+
+    const existedUser = await User.findOne({
+        $or: [{username},{email}]
+    })
+
+    if(existedUser){
+        throw new ApiError(400, "User with email or username already exist")
+    }
+
+    const user = await User.create({
+        fullname, 
+        username: username.toLowerCase(),
+        email,
+        password,
+        role,
+        registrationStatus,
+    })
+
+    const registeredSellerInfo = await User.findById(user._id).select(
+        "-password -refreshtoken"
+    )
+
+    if(!registeredSellerInfo){
+        throw new ApiError(400, "something went wrong while registering user")
+    }
+
+    return res.status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(
+        new ApiResponse(201, registeredSellerInfo, "Seller registered successfully")
+    )
+
+})
+
+const registerManager = asyncHandler( async(req, res) => {
+
+    const {fullname, username, email, password, role, registrationStatus} = req.body
+
+    const existedUser = await User.findOne({
+        $or: [{username},{email}]
+    })
+
+    if(existedUser){
+        throw new ApiError(400, "User with email or username already exist")
+    }
+
+    const user = await User.create({
+        fullname, 
+        username: username.toLowerCase(),
+        email,
+        password,
+        role,
+        registrationStatus,
+    })
+
+    const registedManagerInfo = await User.findById(user._id).select(
+        "-password -refreshtoken"
+    )
+
+    if(!registedManagerInfo){
+        throw new ApiError(400, "something went wrong while registering user")
+    }
+
+    return res.status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(
+        new ApiResponse(201, registedManagerInfo, "Seller registered successfully")
+    )
+
+})
+
+
 export{
     registerUser,
     loginUser,
     logoutUser,
-    refreshAccessToken
-
+    refreshAccessToken,
+    getAllUsers,
+    registerSeller,
+    registerManager,
+    
 }
