@@ -66,10 +66,17 @@ const updateProductData = asyncHandler( async(req, res) => {
     )
 })
 
+const getAllProducts = asyncHandler( async(req, res) => {
+    const {query, sortBy, sortType, page = 1, limit = 10 } = req.body;
+
+    // title, description = query
+    // sort by brand, category, salesperson,
+})
 export {
     getProductById,
     addNewProductFromExistingList,
     updateProductData,
+    getAllProducts,
 }
 
 

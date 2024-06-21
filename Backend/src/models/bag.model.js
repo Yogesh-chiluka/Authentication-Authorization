@@ -7,9 +7,13 @@ const bagSchema = new Schema(
         products: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Video"
+                ref: "Product"
             }
-        ]
+        ],
+        owner: {
+            type: Schema.Types.ObjectId;
+            ref: "User"
+        }
     }
 )
 

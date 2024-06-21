@@ -78,7 +78,19 @@ const removeProductById = asyncHandler( async(req, res) => {
         );
 })
 
+const getAllUserProductsInBag = asyncHandler( async(req, res) => {
+    const userId = req.user._id;
 
+    // write aggregation pipelines to get product data from array
+
+
+})
+
+export {
+    addProductById,
+    removeProductById,
+    getAllUserProductsInBag
+}
 
 
 
