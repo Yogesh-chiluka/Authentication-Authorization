@@ -5,7 +5,7 @@ import { NavLink,useNavigation } from 'react-router-dom';
 
 export default function SignUpLogin(){
 
-
+    
     return(
 
         <div className="text-xl text-center text-gray-300 p-4 w-80 sm:w-1/4 h-1/4 bg-gray-400 border rounded border-transparent drop-shadow-2xl grid grid-rows-1 p-8">

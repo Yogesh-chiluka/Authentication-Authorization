@@ -2,7 +2,7 @@ import mongoose, {Schema} from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2"
 import jwt from "jsonwebtoken"
 import bcrypt, { hash } from "bcrypt"
-import { required } from "joi";
+
 
 const userSchema = new Schema({
     username:{
@@ -39,7 +39,6 @@ const userSchema = new Schema({
     },
     registrationStatus: {
         type: String,
-        required: true,
     }
 }, {
     timestamps:true

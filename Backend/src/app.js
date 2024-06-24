@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser"
 const app = express()
 
 app.use(cors({
-    origin: "https://ubiquitous-giggle-rwqwjqwwjw6fp9g7-8000.app.github.dev/",
+    origin: process.env.CORS_ORIGIN,
     credentials: true
 }))
 //origin: process.env.CORS_ORIGIN ,

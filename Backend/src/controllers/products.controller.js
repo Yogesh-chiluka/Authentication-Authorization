@@ -16,7 +16,7 @@ const getProductById = asyncHandler( async (req, res) => {
     const product = await Product.findById(productId);
     
     if(!product){
-        throw new ApiError(400,"product doesn't exist or something went wrong")l
+        throw new ApiError(400,"product doesn't exist or something went wrong")
     }
 
     res
@@ -34,7 +34,7 @@ const addNewProductFromExistingList = asyncHandler( async (req, res) => {
 
 const updateProductData = asyncHandler( async(req, res) => {
 
-    const { productId, description, price, stock } = req.body;
+    //const { productId, description, price, stock } = req.body;
 
 
     if(!isValidObjectId(product)){

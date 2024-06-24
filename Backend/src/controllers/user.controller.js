@@ -30,6 +30,10 @@ const registerUser = asyncHandler( async(req, res) => {
     const existedUser = await User.findOne({
         $or: [{username},{email}]
     })
+    let registrationStatus = 'accepted'
+    if(role === 'Seller'){
+        registrationStatus = 'registered';
+    }
 
     if(existedUser){
         throw new ApiError(400, "User with email or username already exist")
@@ -40,7 +44,8 @@ const registerUser = asyncHandler( async(req, res) => {
         username: username.toLowerCase(),
         email,
         password,
-        role
+        role,
+        registrationStatus,
     })
 
     const createdUser = await User.findById(user._id).select(
@@ -52,8 +57,6 @@ const registerUser = asyncHandler( async(req, res) => {
     }
 
     return res.status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
     .json(
         new ApiResponse(201, createdUser, "User registered successfully")
     )
@@ -61,16 +64,17 @@ const registerUser = asyncHandler( async(req, res) => {
 
 
 const loginUser = asyncHandler( async(req, res) => {
-    const {email, username, password} = req.body
+    const {email, role, password} = req.body
 
     const user = await User.findOne({
-        $or: [{email}, {username}]
+        email,
+        role
     })
 
     if(!user){
         throw new ApiError(400, "User dosen't exist")
     }
-
+    
     const isPasswordValid = await user.isPasswordCorrect(password)
 
     if(!isPasswordValid){
@@ -93,9 +97,9 @@ const loginUser = asyncHandler( async(req, res) => {
         .json(
             new ApiResponse(
                 200,
-                {
-                    user: loggedInUser, accessToken, refreshToken
-                },
+            
+                loggedInUser, accessToken, refreshToken
+                ,
                 "User logged in successfully"
             )
         )
