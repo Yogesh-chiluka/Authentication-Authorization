@@ -13,7 +13,7 @@ import Layout2 from './components/Layouts/layout-2';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-      <Route path='/' element={<Layout/>} >
+      <Route path='/' element={<Layout2/>} >
         <Route index element={<SignUpLogin/> } />
         <Route path='/LoginForm' element={<LoginForm/>} />
         <Route path='/RegisterForm' element={<RegisterForm/>} />
