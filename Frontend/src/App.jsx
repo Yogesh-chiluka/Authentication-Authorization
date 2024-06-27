@@ -1,7 +1,7 @@
 
 import './styles/tailwind.css';
 import ReactDOM from 'react-dom/client'
-import Layout from './components/Layouts/layoutLoginSignup'
+import MasterLayout from './components/Layouts/masterLayout'
 
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 
@@ -10,15 +10,22 @@ import LoginForm from './components/Forms/loginForm';
 import RegisterForm from './components/Forms/registerFrom';
 import SellerRegistrationStatus from './components/Forms/sellerRegistrationStatus';
 import Layout2 from './components/Layouts/layout-2';
+import Owner from './components/Forms/LoginTypes/Owner';
+import Seller from './components/Forms/LoginTypes/Seller';
+import User from './components/Forms/LoginTypes/User';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-      <Route path='/' element={<Layout2/>} >
+      <Route path='/' element={<MasterLayout/>} >
         <Route index element={<SignUpLogin/> } />
         <Route path='/LoginForm' element={<LoginForm/>} />
         <Route path='/RegisterForm' element={<RegisterForm/>} />
         <Route path='/SellerRegistrationStatus' element={<SellerRegistrationStatus/>} />
-        <Route path='/login/layout2' element={Layout2}/>
+        <Route path='/login' element={<Layout2/>}>
+            <Route path='/login/Owner' element={<Owner/> } />
+            <Route path='/login/Seller' element={<Seller/> } />
+            <Route path='/login/User' element={<User/> } />
+        </Route>
     </Route>
   )
 );

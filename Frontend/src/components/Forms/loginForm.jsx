@@ -34,8 +34,21 @@ export default function LoginForm(){
                 axios.post('https://ubiquitous-giggle-rwqwjqwwjw6fp9g7-8000.app.github.dev/api/v1/users/login',postData).then((response) => {
                         console.log(response.status, response.data.accessToken);
                         if(response.status === 200){
+                                
                                 if(response.data.data.registrationStatus === 'accepted'){
-                                        navigate("/login/layout2");
+
+                                        switch(response.data.data.role){
+
+                                                case 'Owner':   navigate("/login/Owner");
+                                                                break;
+
+                                                case 'Seller':   navigate("/login/Seller");
+                                                                break;
+
+                                                case 'User':   navigate("/login/User");
+                                                                break;
+                                        
+                                        }
                                 }
                                 else{
                                         navigate("/SellerRegistrationStatus")
@@ -46,7 +59,9 @@ export default function LoginForm(){
                       });
         }
         
-    return(
+    return(<div className="min-h-screen flex justify-center items-center ">
+
+        
     <form
     onSubmit={handleSubmit}
      className="select-none text-xl text-gray-800 p-4 w-2/5 bg-gray-100 border rounded border-transparent drop-shadow-xl grid grid-rows-1 p-8 min-w-80">
@@ -103,5 +118,5 @@ export default function LoginForm(){
             
             
         </form>
-        )
+        </div>)
 }

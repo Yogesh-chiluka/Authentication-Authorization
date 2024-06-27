@@ -1,20 +1,41 @@
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 //import { getData } from '../../utils/data';
-import { useLoaderData } from 'react-router-dom';
+// import { useLoaderData } from 'react-router-dom';
 
-export const Loader = () => {
-  let fetch_data = getData("https://api.github.com/users/Yogesh-Chiluka/repos")
-  console.log("loading data");
-  console.log(fetch_data)
-  return fetch_data
-};
-
-export default function AllItemps(){
+// export const Loader = () => {
+//   let fetch_data = getData("https://ubiquitous-giggle-rwqwjqwwjw6fp9g7-8000.app.github.dev/api/v1/products/")
+//   console.log("loading data");
+//   console.log(fetch_data)
+//   return fetch_data
+// };
+const baseURL = "https://ubiquitous-giggle-rwqwjqwwjw6fp9g7-8000.app.github.dev/api/v1/products/"
+export default function AllItems(){
    // const [reposData, setReposData] = useState('');
 
-    const reposData = useLoaderData();
+    // const reposData = useLoaderData();
 
-console.log(reposData)
+    const [data, setData] = useState(null);
+
+    useEffect(()=>{
+    axios.get(baseURL,{
+      responseType: "json",
+    } )
+  .then(function (response) {
+    // handle success
+    setData(response.data);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+    },[])
+    console.log(data.data)
+    if (!data) return null
+
 
     return(
         <>
@@ -22,7 +43,7 @@ console.log(reposData)
         <p>Hello</p>
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 overflow-y-auto">
 
-            {reposData.map((repo)=>(<Card repo={repo}/>))}
+            {data.map((repo)=>(<Card repo={repo}/>))}
 
              </div>
 

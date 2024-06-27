@@ -27,7 +27,7 @@ export default function RegisterForm(){
               });
     }
 
-    return(
+    return(<div className="min-h-screen flex justify-center items-center ">
     <form onSubmit={handleSubmit} className=" text-xl text-gray-800 p-4 w-2/5 bg-gray-100 border rounded border-transparent drop-shadow-xl grid grid-rows-1 p-8 min-w-80">
              <h1 className=' mx-auto font-bold tracking-wide mb-4'>Register Form</h1>
                 <label> Username</label>
@@ -100,5 +100,5 @@ export default function RegisterForm(){
             
             
         </form>
-        )
+       </div> )
 }

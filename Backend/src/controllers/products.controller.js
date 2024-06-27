@@ -67,7 +67,18 @@ const updateProductData = asyncHandler( async(req, res) => {
 })
 
 const getAllProducts = asyncHandler( async(req, res) => {
-    const {query, sortBy, sortType, page = 1, limit = 10 } = req.body;
+    //const {query, sortBy, sortType, page = 1, limit = 10 } = req.body;
+
+    const allProducts = await Product.find();
+
+    if(!allProducts){
+        throw new ApiError(400, "Error while fetching products");
+    }
+
+
+    res.status(200).json(
+        new ApiResponse(400, allProducts, "Successfully fetched all products")
+    )
 
     // title, description = query
     // sort by brand, category, salesperson,

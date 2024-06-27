@@ -2,7 +2,7 @@
 
 export default function SellerRegistrationStatus(){
     // after register and if process in progress if user login with registration details redirect to this page
-    return(
+    return(<div className="min-h-screen flex justify-center items-center ">
         <div className='mx-auto bg-gray-400 p-8 border rounded border-transparent w-1/5'>
         <ol className="relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-200">                  
             <li className="mb-10 ms-6">            
@@ -44,5 +44,5 @@ export default function SellerRegistrationStatus(){
         </ol>
         </div>
           
-    )
+          </div>)
 }
