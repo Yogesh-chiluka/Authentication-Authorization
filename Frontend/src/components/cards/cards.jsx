@@ -23,7 +23,8 @@ export default function AllItems(){
     } )
   .then(function (response) {
     // handle success
-    setData(response.data);
+    setData(response.data.data);
+    console.log(response.data.data);
   })
   .catch(function (error) {
     // handle error
@@ -33,17 +34,20 @@ export default function AllItems(){
     // always executed
   });
     },[])
-    console.log(data.data)
+
+    console.log(data)
     if (!data) return null
 
 
+
+
+    
     return(
         <>
-  <h1 className="text-xl text-gray-200 font-bold mb-2 bg-gray-00">Repositories</h1>
-        <p>Hello</p>
+        <h1 className="text-xl text-gray-200 font-bold mb-2 bg-gray-00">Repositories</h1>
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 overflow-y-auto">
 
-            {data.map((repo)=>(<Card repo={repo}/>))}
+            {data.map((repo)=>(<Card key = {repo._id} repo={repo}/>))}
 
              </div>
 
@@ -58,15 +62,13 @@ export function Card({repo}){
     return(
   
       
-        <div className="w-[200px] h-[200px]  rounded-md  bg-gray-700 m-4" key={repo.id}>
+        <div className="w-[200px] h-[200px]  rounded-md  bg-gray-700 m-4" key = {repo._id}>
           
 
         <div className="p-4 grid grid-rows-5 ">
-          <h1 className="row-span-3 text-lg font-semibold  text-gray-200">{repo.name} 
+          <h1 className="row-span-3 text-lg font-semibold  text-gray-200">{repo.title} 
           </h1>
-          <p className="text-base">
-            Language: {repo.language}
-          </p>
+          <img src={repo.thumbnail} />
           
           <a href={repo.html_url} target="_blank" ><button
             type="button"
